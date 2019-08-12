@@ -9,7 +9,7 @@ def index(request):
 
     
 def hello(request,name):
-    context = {'name': name}
+    context = {'names': name}
     return render(request, 'hello.html', context)
 
 
@@ -26,6 +26,17 @@ def lotto(request):
     # render 할때 3번째 인자로 넘겨준다.
     return render(request, 'lotto.html', context) 
 
+def dinner(request):
+    import random, datetime
+    menus = ['롯데리아', '편도', '맘스터치', '응급실떡볶이', '파파존스', '후참집','피자','치킨']
+    pick = random.choice(menus)
+    context={'pick': pick, 'menus': menus,
+    'users': [],
+    'sentence': 'Life is short, You need Python + django!',
+    'datetime_now': datetime.datetime.now(),
+    'google_link': 'https://docs.djangoproject.com/en/2.2/ref/templates/language/',
+    'google_link2': 'https://docs.djangoproject.com/en/2.2/ref/templates/builtins/'}
+    return render(request, 'dinner.html', context)
 
 
 # render 함수 필수 인자: request, template 파일
