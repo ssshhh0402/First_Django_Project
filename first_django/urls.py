@@ -16,6 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+#pages app의 views.py 파일 불러오기
+from pages import views
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #1. URL 설정
+    #2. URL, 해당하는 VIEWS의 함수
+    path('',views.index),
 ]
