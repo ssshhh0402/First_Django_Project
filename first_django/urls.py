@@ -23,4 +23,6 @@ urlpatterns = [
     #1. URL 설정
     #2. URL, 해당하는 VIEWS의 함수
     path('',views.index),
+    path('hello/<str:name>/', views.hello),
+    path('lotto/', views.lotto),
 ]
