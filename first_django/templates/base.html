@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Djangop services</title>
+  {% block css %} <!--꼭 block이 아니라 a,b,c,d 가능-->
+  {% endblock %}
 </head>
 <body>
-  <h1>{{result}}</h1>
-  <a href="/games">다시하기</a>
+  {% block body%}
+  {% endblock %}
 </body>
 </html>

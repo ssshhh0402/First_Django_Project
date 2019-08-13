@@ -16,6 +16,6 @@ urlpatterns = [
     path('okay/', views.okay),
     path('inner/', views.inner),
     path('games/', views.game),
-path('rufrhk/', views.rsp),
+    path('rufrhk/', views.rsp),
 
 ]

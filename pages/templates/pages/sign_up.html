@@ -20,7 +20,7 @@
           -url에 보이지 않는 형태로 넘어간다.
           -django에서 post 요청으로 form을 보내는 경우 보안상의 이유로 항상 {% csrf_token %}을 넣어줘야함.
   -->
-    <form action="/okay/" method= "post">
+    <form action="pages/okay/" method= "post">
       {% csrf_token%}
       <label for="id">ID :</label>
       <input id="id" name="id" type="text"><br>

@@ -5,12 +5,12 @@ USERS = {}
 def index(request):
     # 2. >>로직 작성<<
     # 3. 해당하는 템플릿 리턴
-    return render(request, 'index.html')
+    return render(request, 'pages/index.html')
 
     
 def hello(request,name):
     context = {'names': name}
-    return render(request, 'hello.html', context)
+    return render(request, 'pages/hello.html', context)
 
 
 
@@ -24,7 +24,7 @@ def lotto(request):
     # 변수를 넘길 때에는 딕셔너리에 담아서 전달
     context = {'numbers': numbers, 'type':type(request),'request':request}
     # render 할때 3번째 인자로 넘겨준다.
-    return render(request, 'lotto.html', context) 
+    return render(request, 'pages/lotto.html', context) 
 
 def dinner(request):
     import random, datetime
@@ -36,7 +36,7 @@ def dinner(request):
     'datetime_now': datetime.datetime.now(),
     'google_link': 'https://docs.djangoproject.com/en/2.2/ref/templates/language/',
     'google_link2': 'https://docs.djangoproject.com/en/2.2/ref/templates/builtins/'}
-    return render(request, 'dinner.html', context)
+    return render(request, 'pages/dinner.html', context)
 
 
 # render 함수 필수 인자: request, template 파일
@@ -50,14 +50,14 @@ def cube(request, num):
         'numbers':[1,2,3],
         'phont':{'a':1, 'b':2, 'c':3}
     }
-    return render(request, 'cube.html', context)
+    return render(request, 'pages/cube.html', context)
 
 def about(request, name, age):                             #여기서 불러오는 값하고 urls에서 지정한 값하고 동일해야 함!
     context={
         'name': name,                 
         'age': age
     }
-    return render(request, 'about.html', context)
+    return render(request, 'pages/about.html', context)
 
 
 
@@ -76,12 +76,12 @@ def gwangbok(request):
         'str': str,
         'time': now_time.time()
     }
-    return render(request, 'gwangbok.html', context)
+    return render(request, 'pages/gwangbok.html', context)
 
 
 
 def ping(request):
-    return render(request, 'ping.html')
+    return render(request, 'pages/ping.html')
 
 
 def pong(request):
@@ -91,14 +91,14 @@ def pong(request):
     context = {
         'data': data
     }
-    return render(request, 'pong.html', context)
+    return render(request, 'pages/pong.html', context)
 
 
 def log(request):
-    return render(request, 'log_in.html')
+    return render(request, 'pages/log_in.html')
 
 def sign(request):
-    return render(request, 'sign_up.html')
+    return render(request, 'pages/sign_up.html')
 
 def okay(request):
     id = request.POST.get('id')
@@ -113,7 +113,7 @@ def okay(request):
     context = {
         'result' : result,
     }
-    return render(request, 'okay.html', context)
+    return render(request, 'pages/okay.html', context)
 
 def inner(request):
     id = request.POST.get('id')
@@ -135,11 +135,11 @@ def inner(request):
             'str': '아이디 잘못 입력'
         }
     
-    return render(request, 'inner.html', context)
+    return render(request, 'pages/inner.html', context)
 
 
 def game(request):
-    return render(request, 'game.html')
+    return render(request, 'pages/game.html')
 
 def rsp(request):
     import random
@@ -176,4 +176,4 @@ def rsp(request):
     context={
         'result': result
     }
-    return render(request,'rufrhk.html', context)
+    return render(request,'pages/rufrhk.html', context)
