@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  {% if str == '아이디 잘못 입력'%}
+  <h1>입력하신 아이디는 존재하지 않습니다.</h1>
+  <a href="/log">돌아가기</a>
+  {% elif str == '비밀번호 불일치'%}
+  <h1>입력하신 아이디와 비밀번호가 일치하지 않습니다.</h1>
+  <a href="/log">돌아가기</a>
+  {% else %}
+  <h1>{{id}}님 환영합니다</h1>
+  <h1>비밀번호 : {{pwd}}</h1>
+  <a href="/log">로그아웃</a>
+  {% endif %}
+</body>
+</html>

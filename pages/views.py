@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+USERS = {}
 # Create your views here.
 # 요청을 처리할 함수 정리
 def index(request):
@@ -42,3 +42,138 @@ def dinner(request):
 # render 함수 필수 인자: request, template 파일
 # 변수를 넘겨주고 싶으면 3 번째 인자로 dicttionary를 넘겨준다.
 # Django에서 활용하는 템플릿 언어는 Django Template Language(DTL)!
+
+
+def cube(request, num):
+    context={
+        'number': num**3,
+        'numbers':[1,2,3],
+        'phont':{'a':1, 'b':2, 'c':3}
+    }
+    return render(request, 'cube.html', context)
+
+def about(request, name, age):                             #여기서 불러오는 값하고 urls에서 지정한 값하고 동일해야 함!
+    context={
+        'name': name,                 
+        'age': age
+    }
+    return render(request, 'about.html', context)
+
+
+
+def gwangbok(request):
+    import datetime
+    now_time = datetime.datetime.now()
+    n_time = now_time.strftime('%m%d')
+    stg = ''
+    if n_time == '0815':
+        stg = '예'
+    else:
+        str = '아니요'
+    
+    context= {
+        'date': n_time,
+        'str': str,
+        'time': now_time.time()
+    }
+    return render(request, 'gwangbok.html', context)
+
+
+
+def ping(request):
+    return render(request, 'ping.html')
+
+
+def pong(request):
+    #사용자가 넘겨주는 값 받아오기
+    print(request.GET)                        #QueryDict
+    data = request.GET.get('datas') 
+    context = {
+        'data': data
+    }
+    return render(request, 'pong.html', context)
+
+
+def log(request):
+    return render(request, 'log_in.html')
+
+def sign(request):
+    return render(request, 'sign_up.html')
+
+def okay(request):
+    id = request.POST.get('id')
+    pwd = request.POST.get('pwd')
+    pwd2 = request.POST.get('pwd2')
+    global USERS
+    if pwd == pwd2 and pwd and pwd2 != 0:
+        result = True
+        USERS[id] = pwd
+    else:
+        result = False
+    context = {
+        'result' : result,
+    }
+    return render(request, 'okay.html', context)
+
+def inner(request):
+    id = request.POST.get('id')
+    pwd = request.POST.get('pwd')
+    if id in USERS.keys():
+        if USERS[id] == pwd:
+            context = {
+                'id' : id,
+                'pwd' : pwd,
+                'str' : '로그인 완료'
+            }
+        else:
+            context={
+                'str' : '비밀번호 불일치'
+            }
+        
+    else:
+        context= {
+            'str': '아이디 잘못 입력'
+        }
+    
+    return render(request, 'inner.html', context)
+
+
+def game(request):
+    return render(request, 'game.html')
+
+def rsp(request):
+    import random
+    choice = request.GET.get('choice')
+    c_choice = random.randint(0,2)
+    if choice == 'rock':
+        y_choice = 0
+    elif choice == 'scissor':
+        y_choice = 1
+    elif choice == 'paper':
+        y_choice = 2
+    
+    if y_choice == 0:
+        if c_choice == 1:
+            result = '이김'
+        elif c_choice == 2:
+            result='짐'
+        else:
+            result = '비김'
+    elif y_choice == 1:
+        if c_choice == 2:
+            result ='이김'
+        elif c_choice == 0:
+            result='짐'
+        else:
+            result = '비김'
+    elif y_choice == 2:
+        if c_choice == 0:
+            result ='이김'
+        elif c_choice == 1:
+            result='짐'
+        else:
+            result = '비김'
+    context={
+        'result': result
+    }
+    return render(request,'rufrhk.html', context)

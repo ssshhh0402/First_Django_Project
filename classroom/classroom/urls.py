@@ -1,4 +1,4 @@
-"""first_django URL Configuration
+"""classroom URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -15,27 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-#pages app의 views.py 파일 불러오기
 from pages import views
+
 urlpatterns = [
    
+    path('', views.first),
     path('admin/', admin.site.urls),
-    #1. URL 설정
-    #2. URL, 해당하는 VIEWS의 함수
-    path('',views.index),
-    path('hello/<str:name>/', views.hello),
-    path('lotto/', views.lotto),
-    path('dinner/', views.dinner),
-    path('cube/<int:num>/', views.cube),
-    path('about/<str:name>/<int:age>/', views.about),
-    path('isitgwangbok/', views.gwangbok),
-    path('ping/', views.ping),
-    path('pong/', views.pong),
-    path('log/', views.log),
-    path('sign_up/',views.sign),
-    path('okay/', views.okay),
-    path('inner/', views.inner),
-    path('games/', views.game),
-    path('rufrhk/', views.rsp),
+    path('info/', views.info ),
+    path('student/<str:name>', views.student)
 ]
