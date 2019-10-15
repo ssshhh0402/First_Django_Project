@@ -5,10 +5,13 @@ from django.contrib.auth import logout as auth_logout
 # Create your views here.
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect('articles:index')
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            #auth_login(request, user)          --> 회원가입후 바로 로그인 시켜주는 코드
             return redirect('accounts:signup')
     else:
         form = UserCreationForm()
@@ -23,7 +26,7 @@ def login(request):
         if form.is_valid():
             #로그인
             auth_login(request, form.get_user())
-            redirect ('articles:index')
+            return redirect (request.GET.get('next') or 'articles:index')
     else:
         form = AuthenticationForm()
     
@@ -36,3 +39,8 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('articles:index')
+
+    #user.is_authenticated = 로그인 되어 있는지/아닌지 return 해주는 변수
+    #is_staff? = staff 인지 일반 회원인지 superuser인지 판단하는  변수
+    #request.user.is_anonymous = 로그인이 안되어 있는 상태인지 확인
+    #last_login: 마지막으로 로그인한 날짜 반환
