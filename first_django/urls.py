@@ -24,7 +24,7 @@ urlpatterns = [
     #1. URL 설정
     #2. URL, 해당하는 VIEWS의 함수
 
-
+    path('accounts/', include('accounts.urls')),
     # 각 앱별로 따로 urls.py를 정의하여 관리함
    path('pages/', include('pages.urls')),
    path('services/', include('services.urls'))
