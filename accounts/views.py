@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from .forms import CustomUserChangeForm
 # Create your views here.
 
 def signup(request):
@@ -44,3 +45,14 @@ def logout(request):
     #is_staff? = staff 인지 일반 회원인지 superuser인지 판단하는  변수
     #request.user.is_anonymous = 로그인이 안되어 있는 상태인지 확인
     #last_login: 마지막으로 로그인한 날짜 반환
+
+
+def u_inf(request):
+    # u = User.objects.get(username = u_id)
+    # u.set_password(request.POST)
+    # u.save()
+    form = CustomUserChangeForm(instance=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, 'accounts/signup.html', context)
